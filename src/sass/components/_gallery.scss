@@ -1,0 +1,72 @@
+.gallery-section {
+  padding-top: 20px;
+  @include mq(tablet) {
+    padding-top: 60px;
+  }
+}
+.gallery-info {
+  font-size: 2em;
+  text-align: center;
+}
+.gallery {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(274px, 1fr));
+  gap: 20px;
+
+  @include mq(tablet) {
+    gap: 30px;
+  }
+}
+.card-item {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+.movie-card {
+  padding: 10px 3px;
+}
+.container_movie-info {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.movie-title {
+  text-transform: uppercase;
+  color: var(--main-text-cl);
+  margin-bottom: 3px;
+}
+
+.movie-info {
+  color: var(--accent-cl);
+}
+
+.movie-rating {
+  display: inline-flex;
+  justify-content: center;
+  margin-left: 11px;
+  padding: 1px 10px;
+  border: none;
+  border-radius: 5px;
+
+  background-color: var(--accent-cl);
+  color: var(--main-cl);
+  width: 36px;
+  height: 16px;
+}
+
+.movie-img {
+  height: 398px;
+  border: none;
+  border-radius: 5px;
+  @include mq(tablet) {
+    width: 294px;
+  }
+  @include mq(desktop) {
+    width: 274px;
+  }
+}

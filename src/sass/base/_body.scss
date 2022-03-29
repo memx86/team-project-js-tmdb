@@ -1,0 +1,53 @@
+html {
+  scroll-behavior: smooth;
+  &[color-scheme='dark'] {
+    --main-text-cl: var(--main-text-cl-dark);
+    --secondary-text-cl: var(--secondary-text-cl-dark);
+    --main-cl: var(--main-cl-dark);
+    --secondary-bg-cl: var(--secondary-bg-cl-dark);
+    --backdrop-cl: var(--backdrop-cl-dark);
+  }
+  &[color-scheme='light'] {
+    --main-text-cl: var(--main-text-cl-light);
+    --secondary-text-cl: var(--secondary-text-cl-light);
+    --main-cl: var(--main-cl-light);
+    --secondary-bg-cl: var(--secondary-bg-cl-light);
+    --backdrop-cl: var(--backdrop-cl-light);
+  }
+}
+body {
+  font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  color: var(--main-text-cl);
+  background-color: var(--main-cl);
+  &.modal-open {
+    overflow: hidden;
+  }
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

@@ -1,0 +1,18 @@
+%btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-cl-light);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 250ms linear;
+  &:hover,
+  &:focus {
+    outline: none;
+    color: var(--accent-cl);
+  }
+}

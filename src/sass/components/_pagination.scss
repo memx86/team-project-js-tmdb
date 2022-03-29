@@ -1,0 +1,98 @@
+.pagination {
+  margin-top: 40px;
+  padding-bottom: 40px;
+  @include mq(tablet-only) {
+    margin-top: 50px;
+    padding-bottom: 70px;
+  }
+  @include mq(desktop) {
+    margin-top: 46px;
+    padding-bottom: 60px;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 250ms linear, visibility 250ms linear;
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+.pagination__button {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-text-cl);
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 250ms linear, background-color 250ms linear, opacity 250ms linear,
+    visibility 250ms linear;
+  &--bg {
+    background-color: var(--secondary-bg-cl);
+    svg {
+      stroke: currentColor;
+      fill: transparent;
+    }
+  }
+  &:disabled {
+    cursor: auto;
+    opacity: 0.5;
+  }
+  &:not(:disabled):hover,
+  &:focus {
+    outline: none;
+    color: var(--main-cl);
+    background-color: var(--accent-cl);
+  }
+  &--active {
+    color: var(--main-cl);
+    background-color: var(--accent-cl);
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      color: var(--main-text-cl);
+      border: 1px solid var(--accent-cl);
+    }
+  }
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+.pagination__pages,
+.pagination__container {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.dots {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  transition: opacity 250ms linear, visibility 250ms linear;
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  &::after {
+    content: '...';
+    position: absolute;
+    top: 10px;
+    left: 15px;
+  }
+}
+.hide {
+  display: none;
+  @include mq(tablet) {
+    display: inline-flex;
+  }
+}

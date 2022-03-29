@@ -1,0 +1,49 @@
+<header class="header home" id="header">
+  <div class="container">
+    <div class="header-container">
+      <a href="index.html" class="header__logo">
+        <svg class="header__icon">
+          <use href="images/sprite.svg#icon-film"></use>
+        </svg>
+        <span class="header__name">Filmoteka</span>
+      </a>
+      <button class="theme" type="button" role="switch" aria-label="light/dark theme">
+        <svg class="theme__svg" width="32" height="32">
+          <use class="theme__choice" data-theme="light" href="./images/sprite.svg#icon-light"></use>
+          <use class="theme__choice" data-theme="dark" href="./images/sprite.svg#icon-dark"></use>
+        </svg>
+      </button>
+      <nav class="header-nav">
+        <ul class="header-list">
+          <li data-btn="home" class="header-list__item">
+            <span data-a="home" class="header-list__link current">Home</span>
+          </li>
+          <li data-btn="myLibrary" class="header-list__item">
+            <span data-a="myLibrary" class="header-list__link">My library</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__content">
+      <form action="" class="header-form">
+        <label for="search-input" class="header-form__label"></label>
+        <input
+          type="text"
+          name="search"
+          id="search-input"
+          placeholder="Поиск фильмов"
+          class="header-form__input"
+        />
+        <button type="submit" class="header-form__button">
+          <svg class="header-form__icon">
+            <use href="images/sprite.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+      <div class="buttons__container buttons__container--header is-hidden">
+        <button type="button" data-btn="watched" class="btn--on btn--header">WATCHED</button>
+        <button type="button" data-btn="queue" class="btn--off btn--header">queue</button>
+      </div>
+    </div>
+  </div>
+</header>

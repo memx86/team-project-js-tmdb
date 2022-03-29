@@ -1,0 +1,67 @@
+.loader {
+  position: relative;
+
+  --size: 10px;
+  --parentWidth: 120px;
+  --margin: 8px;
+  --speed: 1.5s;
+  --speedDif: 0.05s;
+  margin: 20px auto;
+  width: var(--parentWidth);
+  height: var(--size);
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.loader div {
+  position: absolute;
+  top: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--accent-cl);
+}
+
+@keyframes move1 {
+  from {
+    left: calc(var(--size) * 2 + var(--margin) * 2);
+  }
+  to {
+    left: calc(var(--parentWidth) - var(--size));
+  }
+}
+
+@keyframes move2 {
+  from {
+    left: calc(var(--size) + var(--margin));
+  }
+  to {
+    left: calc(var(--parentWidth) - var(--size) * 2 - var(--margin));
+  }
+}
+
+@keyframes move3 {
+  from {
+    left: 0px;
+  }
+  to {
+    left: calc(var(--parentWidth) - var(--size) * 3 - var(--margin) * 2);
+  }
+}
+
+.circle1 {
+  left: calc(var(--size) * 2 + var(--margin) * 2);
+  animation: var(--speed) ease-in-out 0s infinite alternate move1;
+}
+
+.circle2 {
+  left: calc(var(--size) + var(--margin));
+  animation: var(--speed) ease-in-out var(--speedDif) infinite alternate move2;
+}
+
+.circle3 {
+  left: 0px;
+  animation: var(--speed) ease-in-out calc(var(--speedDif) * 2) infinite alternate move3;
+}

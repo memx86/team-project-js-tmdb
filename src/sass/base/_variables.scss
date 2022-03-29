@@ -1,0 +1,28 @@
+:root {
+  --main-text-cl-light: #000000;
+  --main-text-cl-dark: #ffffff;
+  --secondary-text-cl-light: #545454;
+  --secondary-text-cl-dark: #ababab;
+  --accent-cl: #ff6b08;
+  --main-cl-light: #ffffff;
+  --main-cl-dark: #000000;
+  --logo-cl: #818181;
+  --secondary-bg-cl-light: #f7f7f7;
+  --secondary-bg-cl-dark: #080808;
+  --backdrop-cl-light: rgba(0, 0, 0, 0.2);
+  --backdrop-cl-dark: rgba(255, 255, 255, 0.1);
+  @media (prefers-color-scheme: 'dark') {
+    --main-text-cl: var(--main-text-cl-dark);
+    --secondary-text-cl: var(--secondary-text-cl-dark);
+    --main-cl: var(--main-cl-dark);
+    --secondary-bg-cl: var(--secondary-bg-cl-dark);
+    --backdrop-cl: var(--backdrop-cl-dark);
+  }
+  @media (prefers-color-scheme: 'light') {
+    --main-text-cl: var(--main-text-cl-light);
+    --secondary-text-cl: var(--secondary-text-cl-light);
+    --main-cl: var(--main-cl-light);
+    --secondary-bg-cl: var(--secondary-bg-cl-light);
+    --backdrop-cl: var(--backdrop-cl-light);
+  }
+}
