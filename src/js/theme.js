@@ -44,5 +44,6 @@ function getInitialTheme() {
 
 export default function handleTheme() {
   refs.button.addEventListener('click', handleClick);
-  window.addEventListener('DOMContentLoaded', getInitialTheme);
+  // window.addEventListener('load', getInitialTheme);
+  getInitialTheme();
 }
