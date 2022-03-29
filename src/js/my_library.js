@@ -52,7 +52,7 @@ function renderWatched(newPage) {
   renderLibrary(watchedPage);
 }
 
-function renderQueue(newPage) {
+function renderQueue(newPage = 1) {
   refs.gallery.innerHTML = '';
   const queue = queuedStorage.get() || [];
   removeMarker(MARKER.WATCHED);
