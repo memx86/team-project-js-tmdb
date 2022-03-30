@@ -6,6 +6,7 @@ html {
     --main-cl: var(--main-cl-dark);
     --secondary-bg-cl: var(--secondary-bg-cl-dark);
     --backdrop-cl: var(--backdrop-cl-dark);
+    --box-shadow-cl: var(--box-shadow-cl-dark);
   }
   &[color-scheme='light'] {
     --main-text-cl: var(--main-text-cl-light);
@@ -13,6 +14,7 @@ html {
     --main-cl: var(--main-cl-light);
     --secondary-bg-cl: var(--secondary-bg-cl-light);
     --backdrop-cl: var(--backdrop-cl-light);
+    --box-shadow-cl: var(--box-shadow-cl-light);
   }
 }
 body {
