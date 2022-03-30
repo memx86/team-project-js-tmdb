@@ -1,11 +1,11 @@
 <header class="header home" id="header">
   <div class="container">
-    <div class="header-container">
-      <a href="index.html" class="header__logo">
-        <svg class="header__icon">
+    <div class="header__wrap">
+      <a href="index.html" class="header__logo_link hvr-icon-pulse-grow">
+        <svg class="header__logo_icon hvr-icon" width="24" height="24">
           <use href="images/sprite.svg#icon-film"></use>
         </svg>
-        <span class="header__name">Filmoteka</span>
+        <p class="header__logo_title">Filmoteka</p>
       </a>
       <button class="theme" type="button" role="switch" aria-label="light/dark theme">
         <svg class="theme__svg" width="32" height="32">
@@ -13,37 +13,37 @@
           <use class="theme__choice" data-theme="dark" href="./images/sprite.svg#icon-dark"></use>
         </svg>
       </button>
-      <nav class="header-nav">
-        <ul class="header-list">
-          <li data-btn="home" class="header-list__item">
-            <span data-a="home" class="header-list__link current">Home</span>
-          </li>
-          <li data-btn="myLibrary" class="header-list__item">
-            <span data-a="myLibrary" class="header-list__link">My library</span>
-          </li>
-        </ul>
+      <nav class="navigation">
+        <a
+          href="#"
+          data-btn="home"
+          data-a="home"
+          class="navigation__link hvr-underline-reveal current"
+          >Home</a
+        >
+        <a
+          href="#"
+          data-btn="myLibrary"
+          data-a="myLibrary"
+          class="navigation__link hvr-underline-reveal"
+          >My library</a
+        >
       </nav>
     </div>
-    <div class="header__content">
-      <form action="" class="header-form">
-        <label for="search-input" class="header-form__label"></label>
-        <input
-          type="text"
-          name="search"
-          id="search-input"
-          placeholder="Поиск фильмов"
-          class="header-form__input"
-        />
-        <button type="submit" class="header-form__button">
-          <svg class="header-form__icon">
+    <form class="search__form">
+      <div class="search__form_wrap header-form">
+        <input type="text" class="search__input" name="search" placeholder="Поиск фильмов" />
+        <button class="search__btn" type="submit">
+          <svg class="search__icon" width="12" height="12">
             <use href="images/sprite.svg#icon-search"></use>
           </svg>
         </button>
-      </form>
-      <div class="buttons__container buttons__container--header is-hidden">
-        <button type="button" data-btn="watched" class="btn--on btn--header">WATCHED</button>
-        <button type="button" data-btn="queue" class="btn--off btn--header">queue</button>
+        <span class="search__form_strip"> </span>
       </div>
+    </form>
+    <div class="buttons__container buttons__container--header visually-hidden">
+      <button type="button" data-btn="watched" class="btn--on btn--header">WATCHED</button>
+      <button type="button" data-btn="queue" class="btn--off btn--header">queue</button>
     </div>
   </div>
 </header>

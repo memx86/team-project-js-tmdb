@@ -16,7 +16,7 @@ const refs = {
   watchedBtn: document.querySelector('[data-btn="watched"]'),
   queueBtn: document.querySelector('[data-btn="queue"]'),
   libBtnsContainer: document.querySelector('.buttons__container--header'),
-  inputForm: document.querySelector('.header-form'),
+  inputForm: document.querySelector('.search__form'),
   info: document.querySelector('.gallery-info'),
   gallery: document.querySelector('.gallery'),
   header: document.querySelector('.header'),
@@ -28,8 +28,8 @@ function onClickMyLibBtn() {
   }
   changeClassA('current');
   changeClassBtn('btn--on', 'btn--off');
-  refs.libBtnsContainer.classList.remove('is-hidden');
-  refs.inputForm.classList.add('is-hidden');
+  refs.libBtnsContainer.classList.remove('visually-hidden');
+  refs.inputForm.classList.add('visually-hidden');
   refs.header.classList.add('myLib');
   page = 1;
   renderWatched();
@@ -89,8 +89,8 @@ function onClickMyHomeBtn() {
   removeMarker(MARKER.WATCHED);
   removeMarker(MARKER.QUEUE);
   changeClassA('current');
-  refs.libBtnsContainer.classList.add('is-hidden');
-  refs.inputForm.classList.remove('is-hidden');
+  refs.libBtnsContainer.classList.add('visually-hidden');
+  refs.inputForm.classList.remove('visually-hidden');
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
   popularMovies();
