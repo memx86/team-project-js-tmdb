@@ -41,7 +41,7 @@ export default class Storage {
   };
   saveMovie = item => {
     const movies = this.get() || [];
-    const updatedMovies = [...movies, item];
+    const updatedMovies = [item, ...movies];
     this.save(updatedMovies);
   };
   deleteMovie = id => {
