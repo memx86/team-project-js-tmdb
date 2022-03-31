@@ -47,7 +47,6 @@
     }
 
     @include mq(tablet) {
-      padding-top: 41px;
       background-image: url('/images/header-myLib/myLib-overlay-md.png');
       background-image: -webkit-image-set(url('/images/header-myLib/myLib-overlay-md.webp') 1x);
 
@@ -75,23 +74,16 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 50px;
   }
   &__logo_link {
     display: flex;
     align-items: center;
-    // &:hover svg,
-    // &:focus svg {
-    //   stroke: var(--accent-cl);
-    // }
-
   }
 
   &__logo_icon {
     margin-right: 10px;
     stroke: #818181;
-    transition: stroke 250ms cubic-bezier(0.4, 0, 0.4, 1);
-
+    transition: color 250ms cubic-bezier(0.4, 0, 0.4, 1);
   }
   &__logo_title {
     color: var(--main-cl-light);
@@ -99,11 +91,10 @@
     font-weight: 500;
     font-size: 30px;
     line-height: 1.16;
-    transition: color 350ms cubic-bezier(0.4, 0, 0.4, 1);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.4, 1);
     @include mq(tablet) {
       display: block;
     }
-   
   }
   &__logo_list {
     display: flex;
@@ -144,6 +135,7 @@
     }
   }
   &__input {
+    margin-top: 40px;
     width: 100%;
     font-size: 14px;
     color: var(--main-cl-light);
@@ -166,8 +158,8 @@
   }
      &__btn {
     position: absolute;
+    top: 40px;
     right: 0;
-    top: -2px;
     background-color: transparent;
     outline: none;
     border: none;
@@ -279,6 +271,15 @@ input:-webkit-autofill {
 .hvr-icon-pulse-grow:hover .hvr-icon,
 .hvr-icon-pulse-grow:focus .hvr-icon,
 .hvr-icon-pulse-grow:active .hvr-icon {
+      transition: stroke 300ms cubic-bezier(0.4, 0, 0.4, 1);
+  & ~ .header__logo_title {
+  color: var(--accent-cl);
+  }
+  &  .header__logo_title {
+  color: var(--accent-cl);
+  }
+  stroke: var(--accent-cl);
+    
   -webkit-animation-name: hvr-icon-pulse-grow;
   animation-name: hvr-icon-pulse-grow;
   -webkit-animation-duration: 0.5s;
