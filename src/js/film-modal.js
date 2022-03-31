@@ -21,6 +21,7 @@ const movieListRef = document.querySelector('.gallery');
 const closeBtnRef = document.querySelector(`[data-modal-close="movie-one"]`);
 const wrapperModalRef = document.querySelector('.wrapper-modal');
 
+
 let dataMovie = {};
 let watched = false;
 let queued = false;

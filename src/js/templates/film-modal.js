@@ -54,31 +54,26 @@ export default function makeOneMovieMarkup(dataMovie) {
         </div>
         <div class="movie">
             <h2 class="movie__title uppercase">${title}</h2>
-            <div class="movie__statistic">
-                <ul class="movie__list--left">
-                    <li class="movie__item--left">Vote &#47 Votes
-                    </li>
-                    <li class="movie__item--left">Popularity
-                    </li>
-                    <li class="movie__item--left">Original Title
-                    </li>
-                    <li class="movie__item--left">Genre
-                    </li>
-                </ul>
-                <ul class="movie__list--right">
-                    <li class="movie__item--right">
-                        <span class="movie__average">${vote_average}</span>
-                        <span>&#47</span>
-                        <span class="movie__count">${vote_count}</span>
-                    </li>
-                    <li class="movie__item--right">${popularity}
-                    </li>
-                    <li class="movie__item--right uppercase">${original_title}
-                    </li>
-                    <li class="movie__item--right">${genresNames}
-                    </li>
-                </ul>
-            </div>
+
+            <table class="movie__statistic">
+        <tr class="movie__table--row">
+          <td class="movie__table--head">Vote &#47 Votes</td>
+          <td class="movie__table--data"><span class="movie__average">${vote_average}</span>&nbsp &#47 &nbsp<span class="movie__count">${vote_count}</td>
+        </tr>
+        <tr class="movie__table--row">
+          <td class="movie__table--head">Popularity</th>
+          <td class="movie__table--data">${popularity}</td>
+        </tr>
+        <tr class="movie__table--row">
+          <td class="movie__table--head">Original Title</th>
+          <td class="movie__table--data">${original_title}</td>
+        </tr>
+        <tr class="movie__table--row">
+          <td class="movie__table--head">Genre</th>
+          <td class="movie__table--data">${genresNames}</td>
+        </tr>
+      </table>
+
             <div class="movie__description">
                 <h3 class="movie__about uppercase">About</h3>
                 <p class="movie__text">${overview}</p>
@@ -116,3 +111,30 @@ export default function makeOneMovieMarkup(dataMovie) {
     }
     `;
 }
+
+
+// {/* <div class="movie__statistic">
+//                 <ul class="movie__list--left">
+//                     <li class="movie__item--left">Vote &#47 Votes
+//                     </li>
+//                     <li class="movie__item--left">Popularity
+//                     </li>
+//                     <li class="movie__item--left">Original Title
+//                     </li>
+//                     <li class="movie__item--left">Genre
+//                     </li>
+//                 </ul>
+//                 <ul class="movie__list--right">
+//                     <li class="movie__item--right">
+//                         <span class="movie__average">${vote_average}</span>
+//                         <span>&#47</span>
+//                         <span class="movie__count">${vote_count}</span>
+//                     </li>
+//                     <li class="movie__item--right">${popularity}
+//                     </li>
+//                     <li class="movie__item--right uppercase">${original_title}
+//                     </li>
+//                     <li class="movie__item--right">${genresNames}
+//                     </li>
+//                 </ul>
+//             </div> */}
