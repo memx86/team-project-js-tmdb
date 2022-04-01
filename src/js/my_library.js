@@ -8,6 +8,7 @@ const MARKER = {
 };
 const PER_PAGE = 18;
 let page = 1;
+let canScroll = false;
 const refs = {
   myLibBtn: document.querySelector('[data-btn="myLibrary"]'),
   myLibA: document.querySelector('[data-a="myLibrary"]'),
@@ -32,7 +33,9 @@ function onClickMyLibBtn() {
   refs.inputForm.classList.add('is-hidden');
   refs.header.classList.add('myLib');
   page = 1;
+  canScroll = false;
   renderWatched();
+  canScroll = true;
 }
 
 function addMarker(marker) {
@@ -80,6 +83,10 @@ function renderLibrary(movies) {
   }
   refs.info.innerHTML = '';
   renderMarkup(movies);
+  console.log(canScroll);
+  if (canScroll) {
+    refs.gallery.scrollIntoView();
+  }
 }
 
 function onClickMyHomeBtn() {
@@ -99,13 +106,17 @@ function onClickMyHomeBtn() {
 function onClickMyWatchedBtn() {
   changeClassBtn('btn--on', 'btn--off');
   page = 1;
+  canScroll = false;
   renderWatched();
+  canScroll = true;
 }
 
 function onClickMyQueueBtn() {
   changeClassBtn('btn--off', 'btn--on');
   page = 1;
+  canScroll = false;
   renderQueue();
+  canScroll = true;
 }
 
 function changeClassBtn(add, remove) {
@@ -115,9 +126,9 @@ function changeClassBtn(add, remove) {
   refs.queueBtn.classList.remove(add);
 }
 
-function changeClassA(csassA) {
-  refs.myLibA.classList.toggle(csassA);
-  refs.homeA.classList.toggle(csassA);
+function changeClassA(classA) {
+  refs.myLibA.classList.toggle(classA);
+  refs.homeA.classList.toggle(classA);
 }
 
 function myLibrary() {
