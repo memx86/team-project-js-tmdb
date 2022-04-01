@@ -4,10 +4,11 @@ import { api, pagination, moviesStorage } from './services';
 const submitForm = document.querySelector('.header-form');
 const info = document.querySelector('.gallery-info');
 const gallery = document.querySelector('.gallery');
+const categories = document.querySelector('.gallery-categories');
 const loader = document.querySelector('.loader');
 const ERROR_MESSAGE = 'Search is not successful. Enter the correct movie name.';
 
-const paginationCallback = page => {
+const handleSearch = page => {
   api.page = page;
   loader.classList.remove('is-hidden');
   api
@@ -24,7 +25,7 @@ const handleSuccess = ({ results, total_pages: totalPages }) => {
   gallery.innerHTML = '';
   renderMarkup(results);
   moviesStorage.save(results);
-  pagination.callback = paginationCallback;
+  pagination.callback = handleSearch;
   pagination.page = api.page;
   pagination.totalPages = totalPages;
   loader.classList.add('is-hidden');
@@ -48,6 +49,7 @@ const searchFilms = async e => {
   api.page = 1;
   api.query = query;
   try {
+    categories.classList.add('is-hidden');
     loader.classList.remove('is-hidden');
     const data = await api.searchMovies();
     if (!data.results.length) {
@@ -64,4 +66,4 @@ const searchFilms = async e => {
 const search = () => {
   submitForm.addEventListener('submit', searchFilms);
 };
-export default search;
+export { handleSearch, search };

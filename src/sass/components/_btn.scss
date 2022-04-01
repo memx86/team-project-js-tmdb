@@ -37,7 +37,15 @@
 .btn--off {
   background-color: transparent;
   color: var(--main-text-cl-light);
+  outline: none;
   border: 1px solid var(--main-text-cl-light);
+  transition: border-color 250ms linear, color 250ms linear, box-shadow 250ms linear;
+  &:hover,
+  &:focus {
+    border-color: var(--accent-cl);
+    color: var(--accent-cl);
+    box-shadow: 0px 0px 15px 4px rgba(255, 107, 1, 0.6);
+  }
 }
 
 .btn--header {
@@ -53,4 +61,11 @@
   background-color: var(--accent-cl);
   color: var(--main-cl-light);
   border: none;
+  transition: box-shadow 250ms linear;
+  &:hover,
+  &:focus {
+    outline: none;
+    color: var(--main-cl-light);
+    box-shadow: 0px 0px 15px 4px rgba(255, 107, 1, 0.6);
+  }
 }

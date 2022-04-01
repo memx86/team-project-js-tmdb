@@ -12,8 +12,11 @@
 export default class ApiTMDB {
   static #API_KEY = 'fadfbb72581e18342bb7490adda20bdd';
   static #BASE_URL = 'https://api.themoviedb.org/3';
-  static #ENDPOINTS = {
+  static ENDPOINTS = {
     TRENDING: '/trending/movie/day',
+    NOW_PLAYING: '/movie/now_playing',
+    TOP_RATED: '/movie/top_rated',
+    UPCOMING: '/movie/upcoming',
     SEARCH_MOVIES: '/search/movie',
     GET_MOVIE: '/movie',
     GENRES: '/genre/movie/list',
@@ -23,6 +26,7 @@ export default class ApiTMDB {
     include_adult: false,
   });
   #page = 1;
+  #endpoint = ApiTMDB.ENDPOINTS.TRENDING;
   #query;
   #id;
 
@@ -35,11 +39,11 @@ export default class ApiTMDB {
     return Promise.reject(res.statusText);
   };
 
-  getTrending = () => {
+  getCategory = () => {
     const params = new URLSearchParams({
       page: this.#page,
     });
-    return this.getData(ApiTMDB.#ENDPOINTS.TRENDING, params);
+    return this.getData(this.#endpoint, params);
   };
 
   searchMovies = () => {
@@ -47,24 +51,24 @@ export default class ApiTMDB {
       query: this.#query,
       page: this.#page,
     });
-    return this.getData(ApiTMDB.#ENDPOINTS.SEARCH_MOVIES, params);
+    return this.getData(ApiTMDB.ENDPOINTS.SEARCH_MOVIES, params);
   };
 
   getMovie = () => {
     const params = new URLSearchParams({
       append_to_response: 'videos',
     });
-    const endpoint = `${ApiTMDB.#ENDPOINTS.GET_MOVIE}/${this.#id}`;
+    const endpoint = `${ApiTMDB.ENDPOINTS.GET_MOVIE}/${this.#id}`;
     return this.getData(endpoint, params);
   };
 
   getGenres = () => {
-    const endpoint = `${ApiTMDB.#ENDPOINTS.GENRES}`;
+    const endpoint = `${ApiTMDB.ENDPOINTS.GENRES}`;
     return this.getData(endpoint).then(res => res.genres);
   };
 
   getGenres = () => {
-    const endpoint = `${ApiTMDB.#ENDPOINTS.GENRES}`;
+    const endpoint = `${ApiTMDB.ENDPOINTS.GENRES}`;
     return this.getData(endpoint).then(res => res.genres);
   };
 
@@ -91,5 +95,12 @@ export default class ApiTMDB {
   }
   set id(newId) {
     this.#id = newId;
+  }
+
+  get endpoint() {
+    return this.#endpoint;
+  }
+  set endpoint(newEndpoint) {
+    this.#endpoint = newEndpoint;
   }
 }
