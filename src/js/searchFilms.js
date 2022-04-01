@@ -1,7 +1,7 @@
 import { renderMarkup } from './templates/film_card';
 import { api, pagination, moviesStorage } from './services';
 
-const submitForm = document.querySelector('.header-form');
+const submitForm = document.querySelector('.search__form');
 const info = document.querySelector('.gallery-info');
 const gallery = document.querySelector('.gallery');
 const categories = document.querySelector('.gallery-categories');

@@ -3,6 +3,7 @@
 }
 .buttons__container--header {
   position: absolute;
+  margin-top: 45px;
   justify-content: center;
   transition: opacity 250ms linear, visibility 250ms linear;
   &.is-hidden {
