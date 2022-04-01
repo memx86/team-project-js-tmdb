@@ -33,7 +33,6 @@ const handleSuccess = ({ results, total_pages: totalPages }) => {
 const handleError = err => {
   gallery.innerHTML = '';
   pagination.hidePagination();
-  ``;
   loader.classList.add('is-hidden');
   if (err) {
     console.error(err);
