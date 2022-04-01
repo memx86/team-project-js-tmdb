@@ -14,7 +14,8 @@ async function popularMovies() {
     pagination.callback = moreMovies;
     pagination.showPagination();
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    refs.loader.classList.add('is-hidden');
   }
 }
 
