@@ -5,11 +5,19 @@ const submitForm = document.querySelector('.header-form');
 const info = document.querySelector('.gallery-info');
 const gallery = document.querySelector('.gallery');
 const categories = document.querySelector('.gallery-categories');
+const loader = document.querySelector('.loader');
 const ERROR_MESSAGE = 'Search is not successful. Enter the correct movie name.';
 
 const paginationCallback = page => {
   api.page = page;
-  api.searchMovies().then(handleSuccess).catch(handleError);
+  loader.classList.remove('is-hidden');
+  api
+    .searchMovies()
+    .then(data => {
+      handleSuccess(data);
+      gallery.scrollIntoView();
+    })
+    .catch(handleError);
 };
 
 const handleSuccess = ({ results, total_pages: totalPages }) => {
@@ -20,10 +28,13 @@ const handleSuccess = ({ results, total_pages: totalPages }) => {
   pagination.callback = paginationCallback;
   pagination.page = api.page;
   pagination.totalPages = totalPages;
+  loader.classList.add('is-hidden');
 };
 const handleError = err => {
   gallery.innerHTML = '';
   pagination.hidePagination();
+  ``;
+  loader.classList.add('is-hidden');
   if (err) {
     console.error(err);
     return;
@@ -39,6 +50,8 @@ const searchFilms = async e => {
   api.page = 1;
   api.query = query;
   try {
+    categories.classList.add('is-hidden');
+    loader.classList.remove('is-hidden');
     const data = await api.searchMovies();
     if (!data.results.length) {
       handleError();
