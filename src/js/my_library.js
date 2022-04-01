@@ -11,13 +11,13 @@ const PER_PAGE = 18;
 let page = 1;
 let canScroll = false;
 const refs = {
-  logo: document.querySelector('.header__logo_link'),
-  myLibA: document.querySelector('[data-a="myLibrary"]'),
-  homeA: document.querySelector('[data-a="home"]'),
+  logo: document.querySelector('.header__logo-link'),
+  myLibA: document.querySelector('[data-nav="myLibrary"]'),
+  homeA: document.querySelector('[data-nav="home"]'),
   watchedBtn: document.querySelector('[data-btn="watched"]'),
   queueBtn: document.querySelector('[data-btn="queue"]'),
   libBtnsContainer: document.querySelector('.buttons__container--header'),
-  inputForm: document.querySelector('.search__form'),
+  searchForm: document.querySelector('.search__form'),
   info: document.querySelector('.gallery-info'),
   gallery: document.querySelector('.gallery'),
   categories: document.querySelector('.gallery-categories'),
@@ -31,7 +31,7 @@ function onClickMyLibBtn() {
   changeClassA('current');
   changeClassBtn('btn--on', 'btn--off');
   refs.libBtnsContainer.classList.remove('is-hidden');
-  refs.inputForm.classList.add('is-hidden');
+  refs.searchForm.classList.add('is-hidden');
   refs.header.classList.add('myLib');
   page = 1;
   refs.categories.classList.add('is-hidden');
@@ -100,8 +100,8 @@ function onClickMyHomeBtn() {
   removeMarker(MARKER.QUEUE);
   changeClassA('current');
   refs.libBtnsContainer.classList.add('is-hidden');
-  refs.inputForm.classList.remove('is-hidden');
-  refs.inputForm.elements.search.value = '';
+  refs.searchForm.classList.remove('is-hidden');
+  refs.searchForm.elements.search.value = '';
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
   refs.categories.classList.remove('is-hidden');

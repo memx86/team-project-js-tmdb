@@ -83,17 +83,18 @@
     justify-content: space-between;
     align-items: center;
   }
-  &__logo_link {
+  &__logo-link {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
-  &__logo_icon {
+  &__logo-icon {
     margin-right: 10px;
     stroke: #818181;
     transition: color 250ms cubic-bezier(0.4, 0, 0.4, 1);
   }
-  &__logo_title {
+  &__logo-title {
     color: var(--main-cl-light);
     display: none;
     font-weight: 500;
@@ -103,9 +104,6 @@
     @include mq(tablet) {
       display: block;
     }
-  }
-  &__logo_list {
-    display: flex;
   }
   & .container {
     max-width: 440px;
@@ -224,6 +222,7 @@
     line-height: 1.16;
     text-transform: uppercase;
     color: var(--main-cl-light);
+    cursor: pointer;
     transition: color 250ms cubic-bezier(0.4, 0, 0.4, 1);
     &:hover,
     &:focus {
