@@ -1,7 +1,7 @@
 import { renderMarkup } from './templates/film_card';
 import { api, pagination, moviesStorage } from './services';
 
-const submitForm = document.querySelector('.header-form');
+const submitForm = document.querySelector('.search__form');
 const info = document.querySelector('.gallery-info');
 const gallery = document.querySelector('.gallery');
 const ERROR_MESSAGE = 'Search is not successful. Enter the correct movie name.';

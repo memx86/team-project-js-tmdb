@@ -99,6 +99,15 @@
   &__logo_list {
     display: flex;
   }
+& .container{
+  max-width: 440px;
+  @include mq(tablet){
+    max-width: 648px;
+  }
+  @include mq(desktop){
+    max-width: 912px;
+  }
+}
 }
 
 ///////////////////THEME/////////////////////////////////////

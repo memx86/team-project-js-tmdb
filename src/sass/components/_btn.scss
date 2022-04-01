@@ -38,6 +38,11 @@
   background-color: transparent;
   color: var(--main-text-cl-light);
   border: 1px solid var(--main-text-cl-light);
+  &:hover,
+  &:focus {
+    border-color: var(--accent-cl);
+    color: var(--accent-cl);
+  }
 }
 
 .btn--header {
@@ -53,4 +58,10 @@
   background-color: var(--accent-cl);
   color: var(--main-cl-light);
   border: none;
+   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.4);
+      &:hover,
+      &:focus {
+        color: var(--main-cl-light);
+        box-shadow: 0px 0px 15px 4px rgba(255, 107, 1, 1);
+      }
 }

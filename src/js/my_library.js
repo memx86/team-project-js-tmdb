@@ -9,9 +9,8 @@ const MARKER = {
 const PER_PAGE = 18;
 let page = 1;
 const refs = {
-  myLibBtn: document.querySelector('[data-btn="myLibrary"]'),
+  logo: document.querySelector('.header__logo_link'),
   myLibA: document.querySelector('[data-a="myLibrary"]'),
-  homeBtn: document.querySelector('[data-btn="home"]'),
   homeA: document.querySelector('[data-a="home"]'),
   watchedBtn: document.querySelector('[data-btn="watched"]'),
   queueBtn: document.querySelector('[data-btn="queue"]'),
@@ -94,6 +93,7 @@ function onClickMyHomeBtn() {
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
   popularMovies();
+  resetPage();
 }
 
 function onClickMyWatchedBtn() {
@@ -121,8 +121,9 @@ function changeClassA(csassA) {
 }
 
 function myLibrary() {
-  refs.myLibBtn.addEventListener('click', onClickMyLibBtn);
-  refs.homeBtn.addEventListener('click', onClickMyHomeBtn);
+  refs.logo.addEventListener('click', onClickMyHomeBtn);
+  refs.myLibA.addEventListener('click', onClickMyLibBtn);
+  refs.homeA.addEventListener('click', onClickMyHomeBtn);
   refs.watchedBtn.addEventListener('click', onClickMyWatchedBtn);
   refs.queueBtn.addEventListener('click', onClickMyQueueBtn);
 }
