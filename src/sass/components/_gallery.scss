@@ -1,7 +1,7 @@
 .gallery-section {
   padding-top: 20px;
   @include mq(tablet) {
-    padding-top: 60px;
+    padding-top: 40px;
   }
 }
 .gallery-info {
@@ -26,11 +26,11 @@
   margin-bottom: 20px;
   gap: 6px;
   @include mq(tablet) {
-    margin-bottom: 60px;
-    gap: 25px;
+    margin-bottom: 40px;
+    gap: 10px;
   }
   @include mq(desktop) {
-    gap: 30px;
+    gap: 15px;
   }
   &__btn {
     cursor: pointer;
@@ -39,7 +39,6 @@
     padding: 0;
     background-color: var(--accent-cl);
     color: var(--main-cl);
-    border: none;
     border-radius: 5px;
     font-family: inherit;
     font-size: 100%;
@@ -54,11 +53,13 @@
       min-height: 40px;
       font-size: 150%;
     }
-    &:hover,
-    &:focus {
-      outline: none;
-      color: var(--btn-accent);
+    &.btn--off {
+      color: var(--main-text-cl);
+      border: 1px solid var(--main-text-cl);
     }
+  }
+  &.is-hidden {
+    display: none;
   }
 }
 

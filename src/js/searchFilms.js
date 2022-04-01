@@ -4,6 +4,7 @@ import { api, pagination, moviesStorage } from './services';
 const submitForm = document.querySelector('.header-form');
 const info = document.querySelector('.gallery-info');
 const gallery = document.querySelector('.gallery');
+const categories = document.querySelector('.gallery-categories');
 const ERROR_MESSAGE = 'Search is not successful. Enter the correct movie name.';
 
 const paginationCallback = page => {

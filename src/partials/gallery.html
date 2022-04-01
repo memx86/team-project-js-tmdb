@@ -1,10 +1,18 @@
 <section class="section gallery-section">
   <h2 class="visually-hidden">Film gallery</h2>
   <div class="gallery-categories">
-    <button class="gallery-categories__btn">Trending</button>
-    <button class="gallery-categories__btn">Popular</button>
-    <button class="gallery-categories__btn">Top rated</button>
-    <button class="gallery-categories__btn">Upcoming</button>
+    <button type="button" class="gallery-categories__btn btn--on" data-endpoint="TRENDING">
+      Trending
+    </button>
+    <button type="button" class="gallery-categories__btn btn--off" data-endpoint="TOP_RATED">
+      Top rated
+    </button>
+    <button type="button" class="gallery-categories__btn btn--off" data-endpoint="NOW_PLAYING">
+      Now playing
+    </button>
+    <button type="button" class="gallery-categories__btn btn--off" data-endpoint="UPCOMING">
+      Upcoming
+    </button>
   </div>
   <div class="container gallery-container">
     <p class="gallery-info"></p>

@@ -20,4 +20,5 @@ export {
   watchedStorage,
   themeStorage,
   pagination,
+  ApiTMDB,
 };

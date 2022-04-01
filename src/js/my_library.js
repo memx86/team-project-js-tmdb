@@ -1,6 +1,6 @@
 import { watchedStorage, queuedStorage, pagination } from './services';
 import { renderMarkup } from './templates/film_card';
-import popularMovies from './popular_movies';
+import getMovies from './popular_movies';
 
 const MARKER = {
   WATCHED: 'watched',
@@ -19,6 +19,7 @@ const refs = {
   inputForm: document.querySelector('.header-form'),
   info: document.querySelector('.gallery-info'),
   gallery: document.querySelector('.gallery'),
+  categories: document.querySelector('.gallery-categories'),
   header: document.querySelector('.header'),
 };
 
@@ -32,6 +33,7 @@ function onClickMyLibBtn() {
   refs.inputForm.classList.add('is-hidden');
   refs.header.classList.add('myLib');
   page = 1;
+  refs.categories.classList.add('is-hidden');
   renderWatched();
 }
 
@@ -93,7 +95,7 @@ function onClickMyHomeBtn() {
   refs.inputForm.classList.remove('is-hidden');
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
-  popularMovies();
+  getMovies();
 }
 
 function onClickMyWatchedBtn() {
