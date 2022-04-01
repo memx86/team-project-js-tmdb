@@ -31,7 +31,7 @@ function onClickMyLibBtn() {
   changeClassA('current');
   changeClassBtn('btn--on', 'btn--off');
   refs.libBtnsContainer.classList.remove('is-hidden');
-  refs.inputForm.classList.add('visually-hidden');
+  refs.inputForm.classList.add('is-hidden');
   refs.header.classList.add('myLib');
   page = 1;
   refs.categories.classList.add('is-hidden');

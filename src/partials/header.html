@@ -18,8 +18,8 @@
         <a href="#" data-a="myLibrary" class="navigation__link hvr-underline-reveal">My library</a>
       </nav>
     </div>
-    <form class="search__form">
-      <div class="search__form-wrap header-form">
+    <div class="header-content">
+      <form class="search__form">
         <input type="text" class="search__input" name="search" placeholder="Search movies" />
         <button class="search__btn" type="submit">
           <svg class="search__icon" width="12" height="12">
@@ -27,11 +27,11 @@
           </svg>
         </button>
         <span class="search__form-strip"> </span>
+      </form>
+      <div class="buttons__container buttons__container--header is-hidden">
+        <button type="button" data-btn="watched" class="btn--on btn--header">WATCHED</button>
+        <button type="button" data-btn="queue" class="btn--off btn--header">queue</button>
       </div>
-    </form>
-    <div class="buttons__container buttons__container--header is-hidden">
-      <button type="button" data-btn="watched" class="btn--on btn--header">WATCHED</button>
-      <button type="button" data-btn="queue" class="btn--off btn--header">queue</button>
     </div>
   </div>
 </header>
