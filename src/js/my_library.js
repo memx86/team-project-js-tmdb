@@ -1,6 +1,7 @@
 import { watchedStorage, queuedStorage, pagination } from './services';
 import { renderMarkup } from './templates/film_card';
-import popularMovies from './popular_movies';
+import getMovies from './popular_movies';
+import { handleSearch } from './searchFilms';
 
 const MARKER = {
   WATCHED: 'watched',
@@ -8,6 +9,7 @@ const MARKER = {
 };
 const PER_PAGE = 18;
 let page = 1;
+let canScroll = false;
 const refs = {
   logo: document.querySelector('.header__logo_link'),
   myLibA: document.querySelector('[data-a="myLibrary"]'),
@@ -18,6 +20,7 @@ const refs = {
   inputForm: document.querySelector('.search__form'),
   info: document.querySelector('.gallery-info'),
   gallery: document.querySelector('.gallery'),
+  categories: document.querySelector('.gallery-categories'),
   header: document.querySelector('.header'),
 };
 
@@ -31,7 +34,11 @@ function onClickMyLibBtn() {
   refs.inputForm.classList.add('visually-hidden');
   refs.header.classList.add('myLib');
   page = 1;
+  refs.categories.classList.add('is-hidden');
+  canScroll = false;
   renderWatched();
+  canScroll = true;
+  pagination.showPagination();
 }
 
 function addMarker(marker) {
@@ -79,6 +86,10 @@ function renderLibrary(movies) {
   }
   refs.info.innerHTML = '';
   renderMarkup(movies);
+  console.log(canScroll);
+  if (canScroll) {
+    refs.gallery.scrollIntoView();
+  }
 }
 
 function onClickMyHomeBtn() {
@@ -89,23 +100,28 @@ function onClickMyHomeBtn() {
   removeMarker(MARKER.QUEUE);
   changeClassA('current');
   refs.libBtnsContainer.classList.add('is-hidden');
-  refs.inputForm.classList.remove('visually-hidden');
+  refs.inputForm.classList.remove('is-hidden');
+  refs.inputForm.elements.search.value = '';
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
-  popularMovies();
-  resetPage();
+  refs.categories.classList.remove('is-hidden');
+  getMovies();
 }
 
 function onClickMyWatchedBtn() {
   changeClassBtn('btn--on', 'btn--off');
   page = 1;
+  canScroll = false;
   renderWatched();
+  canScroll = true;
 }
 
 function onClickMyQueueBtn() {
   changeClassBtn('btn--off', 'btn--on');
   page = 1;
+  canScroll = false;
   renderQueue();
+  canScroll = true;
 }
 
 function changeClassBtn(add, remove) {
@@ -115,9 +131,9 @@ function changeClassBtn(add, remove) {
   refs.queueBtn.classList.remove(add);
 }
 
-function changeClassA(csassA) {
-  refs.myLibA.classList.toggle(csassA);
-  refs.homeA.classList.toggle(csassA);
+function changeClassA(classA) {
+  refs.myLibA.classList.toggle(classA);
+  refs.homeA.classList.toggle(classA);
 }
 
 function myLibrary() {
