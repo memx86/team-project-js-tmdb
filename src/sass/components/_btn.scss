@@ -44,7 +44,7 @@
   &:focus {
     border-color: var(--accent-cl);
     color: var(--accent-cl);
-    box-shadow: 0px 0px 15px 4px rgba(255, 107, 1, 0.5);
+    box-shadow: 0px 0px 15px 4px rgba(255, 107, 1, 0.6);
   }
 }
 
@@ -61,12 +61,11 @@
   background-color: var(--accent-cl);
   color: var(--main-cl-light);
   border: none;
-  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.4);
   transition: box-shadow 250ms linear;
   &:hover,
   &:focus {
     outline: none;
     color: var(--main-cl-light);
-    box-shadow: 0px 0px 15px 4px rgba(255, 107, 1, 1);
+    box-shadow: 0px 0px 15px 4px rgba(255, 107, 1, 0.6);
   }
 }

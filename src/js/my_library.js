@@ -1,6 +1,7 @@
 import { watchedStorage, queuedStorage, pagination } from './services';
 import { renderMarkup } from './templates/film_card';
 import getMovies from './popular_movies';
+import { handleSearch } from './searchFilms';
 
 const MARKER = {
   WATCHED: 'watched',
