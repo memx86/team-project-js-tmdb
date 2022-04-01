@@ -36,6 +36,7 @@ function onClickMyLibBtn() {
   canScroll = false;
   renderWatched();
   canScroll = true;
+  pagination.showPagination();
 }
 
 function addMarker(marker) {
@@ -98,6 +99,7 @@ function onClickMyHomeBtn() {
   changeClassA('current');
   refs.libBtnsContainer.classList.add('is-hidden');
   refs.inputForm.classList.remove('is-hidden');
+  refs.inputForm.elements.search.value = '';
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
   popularMovies();
