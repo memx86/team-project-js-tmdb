@@ -18,6 +18,50 @@
     gap: 30px;
   }
 }
+
+.gallery-categories {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;
+  gap: 6px;
+  @include mq(tablet) {
+    margin-bottom: 60px;
+    gap: 25px;
+  }
+  @include mq(desktop) {
+    gap: 30px;
+  }
+  &__btn {
+    cursor: pointer;
+    width: 65px;
+    min-height: 30px;
+    padding: 0;
+    background-color: var(--accent-cl);
+    color: var(--main-cl);
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    @include mq(tablet) {
+      width: 135px;
+      min-height: 35px;
+      font-size: 140%;
+    }
+    @include mq(desktop) {
+      width: 150px;
+      min-height: 40px;
+      font-size: 150%;
+    }
+    &:hover,
+    &:focus {
+      outline: none;
+      color: var(--btn-accent);
+    }
+  }
+}
+
 .card-item {
   border-radius: 5px;
   cursor: pointer;
