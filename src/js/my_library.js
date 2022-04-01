@@ -27,7 +27,7 @@ function onClickMyLibBtn() {
   }
   changeClassA('current');
   changeClassBtn('btn--on', 'btn--off');
-  refs.libBtnsContainer.classList.remove('visually-hidden');
+  refs.libBtnsContainer.classList.remove('is-hidden');
   refs.inputForm.classList.add('visually-hidden');
   refs.header.classList.add('myLib');
   page = 1;
@@ -88,7 +88,7 @@ function onClickMyHomeBtn() {
   removeMarker(MARKER.WATCHED);
   removeMarker(MARKER.QUEUE);
   changeClassA('current');
-  refs.libBtnsContainer.classList.add('visually-hidden');
+  refs.libBtnsContainer.classList.add('is-hidden');
   refs.inputForm.classList.remove('visually-hidden');
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
