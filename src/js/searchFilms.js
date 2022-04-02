@@ -1,5 +1,5 @@
 import { renderMarkup } from './templates/film_card';
-import { api, pagination, moviesStorage } from './services';
+import { api, pagination, moviesStorage, VIEWS } from './services';
 
 const submitForm = document.querySelector('.search__form');
 const info = document.querySelector('.gallery-info');
@@ -7,17 +7,28 @@ const gallery = document.querySelector('.gallery');
 const categories = document.querySelector('.gallery-categories');
 const loader = document.querySelector('.loader');
 const ERROR_MESSAGE = 'Search is not successful. Enter the correct movie name.';
+let canScroll = false;
 
-const handleSearch = page => {
-  api.page = page;
+const handleSearch = async page => {
+  VIEWS.CURRENT = VIEWS.SEARCH;
+  if (page) {
+    api.page = page;
+  } else {
+    canScroll = false;
+  }
   loader.classList.remove('is-hidden');
-  api
-    .searchMovies()
-    .then(data => {
-      handleSuccess(data);
-      gallery.scrollIntoView();
-    })
-    .catch(handleError);
+  categories.classList.add('is-hidden');
+  try {
+    const data = await api.searchMovies();
+    if (!data.results.length) {
+      handleError();
+      return;
+    }
+    handleSuccess(data);
+    if (canScroll) gallery.scrollIntoView();
+  } catch (error) {
+    handleError(error);
+  }
 };
 
 const handleSuccess = ({ results, total_pages: totalPages }) => {
@@ -29,39 +40,29 @@ const handleSuccess = ({ results, total_pages: totalPages }) => {
   pagination.page = api.page;
   pagination.totalPages = totalPages;
   loader.classList.add('is-hidden');
+  pagination.showPagination();
 };
 const handleError = err => {
   gallery.innerHTML = '';
   pagination.hidePagination();
   loader.classList.add('is-hidden');
+  info.innerHTML = ERROR_MESSAGE;
+  VIEWS.CURRENT = VIEWS.HOME;
   if (err) {
     console.error(err);
-    return;
   }
-  info.innerHTML = ERROR_MESSAGE;
 };
 const searchFilms = async e => {
   e.preventDefault();
+  canScroll = false;
   const query = e.target.elements.search.value.trim();
   if (!query) {
     return;
   }
-  api.page = 1;
   api.query = query;
-  try {
-    categories.classList.add('is-hidden');
-    loader.classList.remove('is-hidden');
-    const data = await api.searchMovies();
-    if (!data.results.length) {
-      handleError();
-      return;
-    }
-    handleSuccess(data);
-    pagination.showPagination();
-    e.target.reset();
-  } catch (error) {
-    handleError(error);
-  }
+  await handleSearch(1);
+  canScroll = true;
+  e.target.reset();
 };
 const search = () => {
   submitForm.addEventListener('submit', searchFilms);

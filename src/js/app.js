@@ -1,6 +1,6 @@
 import genres from './genres';
 import handleTheme from './theme';
-import popularMovies from './popular_movies';
+import movies from './movies';
 import { search } from './searchFilms';
 import filmModal from './film-modal';
 import { myLibrary } from './my_library';
@@ -10,7 +10,7 @@ import { Modal } from './services/modal';
 export default async function app() {
   handleTheme();
   await genres();
-  await popularMovies();
+  await movies();
   search();
   filmModal();
   myLibrary();
