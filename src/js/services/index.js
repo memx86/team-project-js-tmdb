@@ -9,6 +9,11 @@ const queuedStorage = new Storage(Storage.KEYS.QUEUED);
 const watchedStorage = new Storage(Storage.KEYS.WATCHED);
 const themeStorage = new Storage(Storage.KEYS.THEME);
 const pagination = new Pagination({});
+const VIEWS = {
+  HOME: 'home',
+  SEARCH: 'search',
+  CURRENT: '',
+};
 
 export { Modal } from './modal';
 export { getGenresNames } from './getGenresNames';
@@ -21,4 +26,5 @@ export {
   themeStorage,
   pagination,
   ApiTMDB,
+  VIEWS,
 };

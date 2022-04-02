@@ -1,10 +1,11 @@
 import { renderMarkup } from './templates/film_card';
-import { api, pagination, ApiTMDB } from './services';
+import { api, pagination, ApiTMDB, VIEWS } from './services';
 
 const refs = {
   gallery: document.querySelector('.gallery'),
   categories: document.querySelector('.gallery-categories'),
   loader: document.querySelector('.loader'),
+  defaultBtn: document.querySelector('[data-endpoint="TRENDING"]'),
 };
 
 refs.categories.addEventListener('click', onChangeCategory);
@@ -18,19 +19,28 @@ function onChangeCategory(e) {
   if (ApiTMDB.ENDPOINTS[newEndpoint]) {
     api.endpoint = ApiTMDB.ENDPOINTS[newEndpoint];
   }
-  resetView();
-  getMovies();
-
-  const activeBtn = e.currentTarget.querySelector('.btn--on');
-  activeBtn?.classList.replace('btn--on', 'btn--off');
-  e.target.classList.replace('btn--off', 'btn--on');
+  resetPage();
+  movies();
+  toggleActiveBtn(e.target);
 }
-const resetView = () => {
+
+function resetPage() {
   api.resetPage();
   refs.gallery.innerHTML = '';
-};
+}
+function toggleActiveBtn(target) {
+  const activeBtn = refs.categories.querySelector('.btn--on');
+  activeBtn?.classList.replace('btn--on', 'btn--off');
+  target.classList.replace('btn--off', 'btn--on');
+}
 
-async function getMovies() {
+async function movies(page) {
+  VIEWS.CURRENT = VIEWS.HOME;
+  if (page) {
+    api.page = page;
+    api.endpoint = ApiTMDB.ENDPOINTS.TRENDING;
+    toggleActiveBtn(refs.defaultBtn);
+  }
   try {
     const totalPages = await renderMovies();
     pagination.page = api.page;
@@ -53,9 +63,9 @@ async function renderMovies() {
   return totalPages;
 }
 
-async function moreMovies() {
+async function moreMovies(page) {
   try {
-    api.page = pagination.page;
+    api.page = page;
     await renderMovies();
     refs.gallery.scrollIntoView();
   } catch (error) {
@@ -63,4 +73,4 @@ async function moreMovies() {
   }
 }
 
-export default getMovies;
+export default movies;
