@@ -84,6 +84,8 @@
   }
   @include mq(desktop) {
     width: 396px;
+    flex-direction: column;
+    justify-content: space-between;
   }
   &__title {
     font-size: 20px;
@@ -130,8 +132,6 @@
     border-radius: 5px;
   }
   &__description {
-    display: flex;
-    flex-wrap: wrap;
     font-size: 12px;
     line-height: 1.33;
     padding-top: 10px;
@@ -163,7 +163,7 @@
   }
   @include mq(desktop) {
     width: 396px;
-    gap: 0 20px;
+    gap: 10px 20px;
   }
 }
 

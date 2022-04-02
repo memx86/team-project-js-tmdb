@@ -27,17 +27,6 @@ let watched = false;
 let queued = false;
 let trailerShown = false;
 
-// Функция для тестировки запроса по получению 20 фильмов
-// async function fetchMovies() {
-//   try {
-//     const data = await api.getTrending();
-//     const { results } = data;
-//     renderMarkup(results);
-//   } catch (error) {
-//     console.log(error);
-//     handleError();
-//   }
-// }
 
 // Функция для очищения разметки в модальном окне
 function clearModal() {
