@@ -1,11 +1,13 @@
 import { renderMarkup } from './templates/film_card';
 import { api, pagination, ApiTMDB, VIEWS } from './services';
+import { PLACEHOLDER } from './searchFilms';
 
 const refs = {
   gallery: document.querySelector('.gallery'),
   categories: document.querySelector('.gallery-categories'),
   loader: document.querySelector('.loader'),
   defaultBtn: document.querySelector('[data-endpoint="TRENDING"]'),
+  input: document.querySelector('.search__input'),
 };
 
 refs.categories.addEventListener('click', onChangeCategory);
@@ -35,6 +37,7 @@ function toggleActiveBtn(target) {
 }
 
 async function movies(page) {
+  refs.input.placeholder = PLACEHOLDER;
   VIEWS.CURRENT = VIEWS.HOME;
   if (page) {
     api.page = page;
