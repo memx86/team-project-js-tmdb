@@ -38,7 +38,6 @@ function onClickMyLibBtn() {
   canScroll = false;
   renderWatched();
   canScroll = true;
-  pagination.showPagination();
 }
 
 function addMarker(marker) {
@@ -86,6 +85,7 @@ function renderLibrary(movies) {
   }
   refs.info.innerHTML = '';
   renderMarkup(movies);
+  pagination.showPagination();
   if (canScroll) {
     refs.gallery.scrollIntoView();
   }
