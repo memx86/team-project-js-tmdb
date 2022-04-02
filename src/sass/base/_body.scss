@@ -18,6 +18,9 @@ html {
   }
 }
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji';
   font-size: 12px;
@@ -28,6 +31,9 @@ body {
   &.modal-open {
     overflow: hidden;
   }
+}
+main {
+  flex-grow: 1;
 }
 a {
   color: inherit;

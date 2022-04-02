@@ -41,7 +41,7 @@ function renderBtns() {
 
 function handleClick(e) {
   const target = e.target.dataset.direction ? e.target : e.target.closest('BUTTON');
-  const direction = target.dataset.direction;
+  const direction = target?.dataset.direction;
   switch (direction) {
     case BTN.UP:
       refs.header.scrollIntoView();
