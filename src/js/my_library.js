@@ -7,6 +7,7 @@ const MARKER = {
   WATCHED: 'watched',
   QUEUE: 'queue',
 };
+
 const PER_PAGE = 18;
 let page = 1;
 let canScroll = false;

@@ -2,11 +2,13 @@ import { renderMarkup } from './templates/film_card';
 import { api, pagination, moviesStorage, VIEWS } from './services';
 
 const submitForm = document.querySelector('.search__form');
+const inputRef = document.querySelector('.search__input');
 const info = document.querySelector('.gallery-info');
 const gallery = document.querySelector('.gallery');
 const categories = document.querySelector('.gallery-categories');
 const loader = document.querySelector('.loader');
-const ERROR_MESSAGE = 'Search is not successful. Enter the correct movie name.';
+const PLACEHOLDER = 'Search movies';
+const ERROR_MESSAGE = 'search is not successful. Enter the correct movie name.';
 let canScroll = false;
 
 const handleSearch = async page => {
@@ -46,8 +48,9 @@ const handleError = err => {
   gallery.innerHTML = '';
   pagination.hidePagination();
   loader.classList.add('is-hidden');
-  info.innerHTML = ERROR_MESSAGE;
+  info.innerHTML = `${api.query} ${ERROR_MESSAGE}`;
   VIEWS.CURRENT = VIEWS.HOME;
+  inputRef.placeholder = PLACEHOLDER;
   if (err) {
     console.error(err);
   }
@@ -63,8 +66,9 @@ const searchFilms = async e => {
   await handleSearch(1);
   canScroll = true;
   e.target.reset();
+  inputRef.placeholder = api.query;
 };
 const search = () => {
   submitForm.addEventListener('submit', searchFilms);
 };
-export { handleSearch, search };
+export { handleSearch, search, PLACEHOLDER };
