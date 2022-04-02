@@ -20,6 +20,7 @@ const movieListRef = document.querySelector('.gallery');
 // получаем ссылку на кнопку закрытия модалки
 const closeBtnRef = document.querySelector(`[data-modal-close="movie-one"]`);
 const wrapperModalRef = document.querySelector('.wrapper-modal');
+const loader = document.querySelector('.loader');
 
 
 let dataMovie = {};
@@ -34,8 +35,9 @@ function clearModal() {
 }
 
 // Функция для сообщения пользователю об ошибке
-const handleError = () => {
-  console.log(1111);
+const handleError = error => {
+  loader.classList.add('is-hidden');
+  console.log(error.message);
 };
 
 // Функция для модального окна
@@ -45,23 +47,27 @@ async function onModalOpenClick(event) {
     return;
   }
   const id = Number(cardRef.dataset.id);
+  loader.classList.remove('is-hidden');
   watched = watchedStorage.checkMovie(id);
   queued = queuedStorage.checkMovie(id);
-
   api.id = id;
-  dataMovie = await api.getMovie();
+  try {
+    dataMovie = await api.getMovie();
 
-  wrapperModalRef.insertAdjacentHTML(
-    'beforeend',
-    makeOneMovieMarkup({ ...dataMovie, watched, queued }),
-  );
+    wrapperModalRef.insertAdjacentHTML(
+      'beforeend',
+      makeOneMovieMarkup({ ...dataMovie, watched, queued }),
+    );
 
-  openModal();
-
-  closeBtnRef.addEventListener('click', closeModal);
-  backdropRef.addEventListener('click', onBackdropClick);
-  document.addEventListener('keydown', onEscDown);
-  wrapperModalRef.querySelector('.buttons__container').addEventListener('click', onModalButton);
+    openModal();
+    loader.classList.add('is-hidden');
+    closeBtnRef.addEventListener('click', closeModal);
+    backdropRef.addEventListener('click', onBackdropClick);
+    document.addEventListener('keydown', onEscDown);
+    wrapperModalRef.querySelector('.buttons__container').addEventListener('click', onModalButton);
+  } catch (error) {
+    handleError(error);
+  }
 }
 
 function openModal() {

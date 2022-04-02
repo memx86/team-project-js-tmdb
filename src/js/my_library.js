@@ -1,6 +1,7 @@
 import { watchedStorage, queuedStorage, pagination } from './services';
 import { renderMarkup } from './templates/film_card';
-import popularMovies from './popular_movies';
+import getMovies from './popular_movies';
+import { handleSearch } from './searchFilms';
 
 const MARKER = {
   WATCHED: 'watched',
@@ -8,17 +9,18 @@ const MARKER = {
 };
 const PER_PAGE = 18;
 let page = 1;
+let canScroll = false;
 const refs = {
-  myLibBtn: document.querySelector('[data-btn="myLibrary"]'),
-  myLibA: document.querySelector('[data-a="myLibrary"]'),
-  homeBtn: document.querySelector('[data-btn="home"]'),
-  homeA: document.querySelector('[data-a="home"]'),
+  logo: document.querySelector('.header__logo-link'),
+  myLibA: document.querySelector('[data-nav="myLibrary"]'),
+  homeA: document.querySelector('[data-nav="home"]'),
   watchedBtn: document.querySelector('[data-btn="watched"]'),
   queueBtn: document.querySelector('[data-btn="queue"]'),
   libBtnsContainer: document.querySelector('.buttons__container--header'),
-  inputForm: document.querySelector('.header-form'),
+  searchForm: document.querySelector('.search__form'),
   info: document.querySelector('.gallery-info'),
   gallery: document.querySelector('.gallery'),
+  categories: document.querySelector('.gallery-categories'),
   header: document.querySelector('.header'),
 };
 
@@ -29,10 +31,14 @@ function onClickMyLibBtn() {
   changeClassA('current');
   changeClassBtn('btn--on', 'btn--off');
   refs.libBtnsContainer.classList.remove('is-hidden');
-  refs.inputForm.classList.add('is-hidden');
+  refs.searchForm.classList.add('is-hidden');
   refs.header.classList.add('myLib');
   page = 1;
+  refs.categories.classList.add('is-hidden');
+  canScroll = false;
   renderWatched();
+  canScroll = true;
+  pagination.showPagination();
 }
 
 function addMarker(marker) {
@@ -80,6 +86,10 @@ function renderLibrary(movies) {
   }
   refs.info.innerHTML = '';
   renderMarkup(movies);
+  console.log(canScroll);
+  if (canScroll) {
+    refs.gallery.scrollIntoView();
+  }
 }
 
 function onClickMyHomeBtn() {
@@ -90,22 +100,28 @@ function onClickMyHomeBtn() {
   removeMarker(MARKER.QUEUE);
   changeClassA('current');
   refs.libBtnsContainer.classList.add('is-hidden');
-  refs.inputForm.classList.remove('is-hidden');
+  refs.searchForm.classList.remove('is-hidden');
+  refs.searchForm.elements.search.value = '';
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
-  popularMovies();
+  refs.categories.classList.remove('is-hidden');
+  getMovies();
 }
 
 function onClickMyWatchedBtn() {
   changeClassBtn('btn--on', 'btn--off');
   page = 1;
+  canScroll = false;
   renderWatched();
+  canScroll = true;
 }
 
 function onClickMyQueueBtn() {
   changeClassBtn('btn--off', 'btn--on');
   page = 1;
+  canScroll = false;
   renderQueue();
+  canScroll = true;
 }
 
 function changeClassBtn(add, remove) {
@@ -115,14 +131,15 @@ function changeClassBtn(add, remove) {
   refs.queueBtn.classList.remove(add);
 }
 
-function changeClassA(csassA) {
-  refs.myLibA.classList.toggle(csassA);
-  refs.homeA.classList.toggle(csassA);
+function changeClassA(classA) {
+  refs.myLibA.classList.toggle(classA);
+  refs.homeA.classList.toggle(classA);
 }
 
 function myLibrary() {
-  refs.myLibBtn.addEventListener('click', onClickMyLibBtn);
-  refs.homeBtn.addEventListener('click', onClickMyHomeBtn);
+  refs.logo.addEventListener('click', onClickMyHomeBtn);
+  refs.myLibA.addEventListener('click', onClickMyLibBtn);
+  refs.homeA.addEventListener('click', onClickMyHomeBtn);
   refs.watchedBtn.addEventListener('click', onClickMyWatchedBtn);
   refs.queueBtn.addEventListener('click', onClickMyQueueBtn);
 }

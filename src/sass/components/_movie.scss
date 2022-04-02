@@ -13,7 +13,10 @@
   background-color: var(--main-cl);
   color: var(--main-text-cl);
   transform: translatex(-50%) scale(1);
-  transition: transform 0.25s linear;
+  transition: transform 250ms linear;
+  .backdrop.is-hidden & {
+    transform: translatex(-50%) scale(0.5);
+  }
   @include mq(mobile) {
     width: 280px;
   }

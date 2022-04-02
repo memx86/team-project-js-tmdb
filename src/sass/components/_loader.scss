@@ -1,7 +1,21 @@
 .loader {
-  position: relative;
-
-  --size: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 30;
+  background-color: var(--backdrop-cl);
+  &.is-hidden {
+    display: none;
+  }
+}
+.loader-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  --size: 20px;
   --parentWidth: 120px;
   --margin: 8px;
   --speed: 1.5s;
@@ -9,13 +23,9 @@
   margin: 20px auto;
   width: var(--parentWidth);
   height: var(--size);
-
-  &.is-hidden {
-    display: none;
-  }
 }
 
-.loader div {
+.loader-wrapper div {
   position: absolute;
   top: 0;
   width: var(--size);

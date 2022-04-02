@@ -11,12 +11,15 @@
   --secondary-bg-cl-dark: #080808;
   --backdrop-cl-light: rgba(0, 0, 0, 0.2);
   --backdrop-cl-dark: rgba(255, 255, 255, 0.1);
+  --box-shadow-cl-dark: 4px 4px 8px 0px rgba(145, 137, 137, 0.625);
+  --box-shadow-cl-light: 0px 4px 4px rgba(0, 0, 0, 0.25);
   @media (prefers-color-scheme: 'dark') {
     --main-text-cl: var(--main-text-cl-dark);
     --secondary-text-cl: var(--secondary-text-cl-dark);
     --main-cl: var(--main-cl-dark);
     --secondary-bg-cl: var(--secondary-bg-cl-dark);
     --backdrop-cl: var(--backdrop-cl-dark);
+    --box-shadow-cl: var(--box-shadow-cl-dark);
   }
   @media (prefers-color-scheme: 'light') {
     --main-text-cl: var(--main-text-cl-light);
@@ -24,5 +27,6 @@
     --main-cl: var(--main-cl-light);
     --secondary-bg-cl: var(--secondary-bg-cl-light);
     --backdrop-cl: var(--backdrop-cl-light);
+    --box-shadow-cl: var(--box-shadow-cl-light);
   }
 }
