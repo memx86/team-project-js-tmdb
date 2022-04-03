@@ -13,36 +13,49 @@ const BTNS = {
   ON: 'btn--on',
   OFF: 'btn-modal--off',
 };
-// получаем ссылку на бэкдроп
 const backdropRef = document.querySelector(`[data-modal="movie-one"]`);
-// получаем ссылку на модалку
 const modalRef = document.querySelector(`.modal`);
-// получаем ссылку на галерею в которую рендерятся карточки фильмов
 const movieListRef = document.querySelector('.gallery');
-// получаем ссылку на кнопку закрытия модалки
 const closeBtnRef = document.querySelector(`[data-modal-close="movie-one"]`);
 const wrapperModalRef = document.querySelector('.wrapper-modal');
 const loader = document.querySelector('.loader');
-
 
 let dataMovie = {};
 let watched = false;
 let queued = false;
 let trailerShown = false;
 
-
-// Функция для очищения разметки в модальном окне
 function clearModal() {
   wrapperModalRef.innerHTML = '';
 }
 
-// Функция для сообщения пользователю об ошибке
 const handleError = error => {
   loader.classList.add('is-hidden');
   console.log(error.message);
 };
 
-// Функция для модального окна
+function prepareData({
+  title,
+  release_date,
+  first_air_date,
+  poster_path,
+  id,
+  genre_ids,
+  genres,
+  vote_average,
+}) {
+  return {
+    title,
+    release_date,
+    first_air_date,
+    poster_path,
+    id,
+    genre_ids,
+    genres,
+    vote_average,
+  };
+}
+
 async function onModalOpenClick(event) {
   const cardRef = event.target.closest('.card-item');
   if (event.target === event.currentTarget || !cardRef) {
@@ -54,11 +67,12 @@ async function onModalOpenClick(event) {
   queued = queuedStorage.checkMovie(id);
   api.id = id;
   try {
-    dataMovie = await api.getMovie();
+    const data = await api.getMovie();
+    dataMovie = prepareData(data);
 
     wrapperModalRef.insertAdjacentHTML(
       'beforeend',
-      makeOneMovieMarkup({ ...dataMovie, watched, queued }),
+      makeOneMovieMarkup({ ...data, watched, queued }),
     );
 
     openModal();
@@ -109,7 +123,7 @@ function onModalButton({ target }) {
         watchedStorage.saveMovie(dataMovie);
       }
       watched = !watched;
-      toggleBtnClass(target)
+      toggleBtnClass(target);
       changeBtnTextWatched(target);
       if (movieListRef.classList.contains(MARKER.WATCHED)) {
         renderWatched();
@@ -122,7 +136,7 @@ function onModalButton({ target }) {
         queuedStorage.saveMovie(dataMovie);
       }
       queued = !queued;
-      toggleBtnClass(target)
+      toggleBtnClass(target);
       changeBtnTextQueue(target);
       if (movieListRef.classList.contains(MARKER.QUEUE)) {
         renderQueue();
@@ -148,7 +162,7 @@ function onModalButton({ target }) {
         );
       }
       trailerShown = !trailerShown;
-      toggleBtnClass(target)
+      toggleBtnClass(target);
       changeBtnTextTrailer(target);
       return;
     default:
@@ -169,13 +183,12 @@ function changeBtnTextTrailer(btn) {
 }
 
 function onModalCard() {
-  // вешаем слушателя на общего родителя галерею
   movieListRef.addEventListener('click', onModalOpenClick);
 }
 
-function toggleBtnClass(btn){
-btn.classList.toggle(BTNS.ON)
-btn.classList.toggle(BTNS.OFF)
+function toggleBtnClass(btn) {
+  btn.classList.toggle(BTNS.ON);
+  btn.classList.toggle(BTNS.OFF);
 }
 
 export default onModalCard;
