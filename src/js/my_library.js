@@ -1,7 +1,7 @@
 import { watchedStorage, queuedStorage, pagination, VIEWS } from './services';
 import { renderMarkup } from './templates/film_card';
 import movies from './movies';
-import { handleSearch } from './searchFilms';
+import { searchFilms } from './searchFilms';
 
 const MARKER = {
   WATCHED: 'watched',
@@ -102,7 +102,7 @@ function onClickMyHomeBtn(e) {
   if (!refs.home.classList.contains('current')) changeLibClass('current');
   refs.libBtnsContainer.classList.add('is-hidden');
   refs.searchForm.classList.remove('is-hidden');
-  refs.searchForm.elements.search.value = '';
+  // refs.searchForm.elements.search.value = '';
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
   refs.categories.classList.remove('is-hidden');
@@ -119,7 +119,7 @@ function goBack() {
       movies();
       return;
     case VIEWS.SEARCH:
-      handleSearch();
+      searchFilms();
       return;
     default:
       return;
