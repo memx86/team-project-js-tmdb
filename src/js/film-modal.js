@@ -10,6 +10,8 @@ const BTNS = {
   REMOVE: 'Remove from',
   SHOW: 'Show',
   HIDE: 'Hide',
+  ON: 'btn--on',
+  OFF: 'btn-modal--off',
 };
 // получаем ссылку на бэкдроп
 const backdropRef = document.querySelector(`[data-modal="movie-one"]`);
@@ -22,22 +24,12 @@ const closeBtnRef = document.querySelector(`[data-modal-close="movie-one"]`);
 const wrapperModalRef = document.querySelector('.wrapper-modal');
 const loader = document.querySelector('.loader');
 
+
 let dataMovie = {};
 let watched = false;
 let queued = false;
 let trailerShown = false;
 
-// Функция для тестировки запроса по получению 20 фильмов
-// async function fetchMovies() {
-//   try {
-//     const data = await api.getTrending();
-//     const { results } = data;
-//     renderMarkup(results);
-//   } catch (error) {
-//     console.log(error);
-//     handleError();
-//   }
-// }
 
 // Функция для очищения разметки в модальном окне
 function clearModal() {
@@ -117,6 +109,7 @@ function onModalButton({ target }) {
         watchedStorage.saveMovie(dataMovie);
       }
       watched = !watched;
+      toggleBtnClass(target)
       changeBtnTextWatched(target);
       if (movieListRef.classList.contains(MARKER.WATCHED)) {
         renderWatched();
@@ -129,6 +122,7 @@ function onModalButton({ target }) {
         queuedStorage.saveMovie(dataMovie);
       }
       queued = !queued;
+      toggleBtnClass(target)
       changeBtnTextQueue(target);
       if (movieListRef.classList.contains(MARKER.QUEUE)) {
         renderQueue();
@@ -154,6 +148,7 @@ function onModalButton({ target }) {
         );
       }
       trailerShown = !trailerShown;
+      toggleBtnClass(target)
       changeBtnTextTrailer(target);
       return;
     default:
@@ -174,9 +169,13 @@ function changeBtnTextTrailer(btn) {
 }
 
 function onModalCard() {
-  //  временный вызов функции для получения 20 карточек и их рендера
-  //   fetchMovies();
   // вешаем слушателя на общего родителя галерею
   movieListRef.addEventListener('click', onModalOpenClick);
 }
+
+function toggleBtnClass(btn){
+btn.classList.toggle(BTNS.ON)
+btn.classList.toggle(BTNS.OFF)
+}
+
 export default onModalCard;

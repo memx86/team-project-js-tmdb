@@ -70,3 +70,39 @@
     box-shadow: 0px 0px 15px 4px rgba(255, 107, 1, 0.6);
   }
 }
+
+.btn-modal--off{
+  @extend .btn--off;
+  color: var(--main-text-cl);
+  border-color: var(--main-text-cl);
+  // &:hover,
+  // &:focus{
+
+  // }
+}
+
+.btn--trailer{
+@extend %btn;
+text-transform: uppercase;
+border-radius: 5px;
+min-width: 239px;
+@include mq(tablet){
+  min-width: 260px;
+}
+@include mq(desktop){
+  min-width: 292px;
+}
+&::after{
+  margin-left: 10px;
+  display: block;
+  content: '';
+  width: 32px;
+  height: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../images/youtube.svg);
+}
+}
+

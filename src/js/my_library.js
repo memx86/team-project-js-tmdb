@@ -1,19 +1,20 @@
-import { watchedStorage, queuedStorage, pagination } from './services';
+import { watchedStorage, queuedStorage, pagination, VIEWS } from './services';
 import { renderMarkup } from './templates/film_card';
-import getMovies from './popular_movies';
+import movies from './movies';
 import { handleSearch } from './searchFilms';
 
 const MARKER = {
   WATCHED: 'watched',
   QUEUE: 'queue',
 };
+
 const PER_PAGE = 18;
 let page = 1;
 let canScroll = false;
 const refs = {
   logo: document.querySelector('.header__logo-link'),
-  myLibA: document.querySelector('[data-nav="myLibrary"]'),
-  homeA: document.querySelector('[data-nav="home"]'),
+  myLib: document.querySelector('[data-nav="myLibrary"]'),
+  home: document.querySelector('[data-nav="home"]'),
   watchedBtn: document.querySelector('[data-btn="watched"]'),
   queueBtn: document.querySelector('[data-btn="queue"]'),
   libBtnsContainer: document.querySelector('.buttons__container--header'),
@@ -25,10 +26,10 @@ const refs = {
 };
 
 function onClickMyLibBtn() {
-  if (refs.myLibA.classList.contains('current')) {
+  if (refs.myLib.classList.contains('current')) {
     return;
   }
-  changeClassA('current');
+  changeLibClass('current');
   changeClassBtn('btn--on', 'btn--off');
   refs.libBtnsContainer.classList.remove('is-hidden');
   refs.searchForm.classList.add('is-hidden');
@@ -38,7 +39,6 @@ function onClickMyLibBtn() {
   canScroll = false;
   renderWatched();
   canScroll = true;
-  pagination.showPagination();
 }
 
 function addMarker(marker) {
@@ -86,26 +86,44 @@ function renderLibrary(movies) {
   }
   refs.info.innerHTML = '';
   renderMarkup(movies);
-  console.log(canScroll);
+  pagination.showPagination();
   if (canScroll) {
     refs.gallery.scrollIntoView();
   }
 }
 
-function onClickMyHomeBtn() {
-  if (refs.homeA.classList.contains('current')) {
+function onClickMyHomeBtn(e) {
+  const target = e.currentTarget;
+  if (target.classList.contains('current')) {
     return;
   }
   removeMarker(MARKER.WATCHED);
   removeMarker(MARKER.QUEUE);
-  changeClassA('current');
+  if (!refs.home.classList.contains('current')) changeLibClass('current');
   refs.libBtnsContainer.classList.add('is-hidden');
   refs.searchForm.classList.remove('is-hidden');
   refs.searchForm.elements.search.value = '';
   refs.header.classList.remove('myLib');
   refs.info.innerHTML = '';
   refs.categories.classList.remove('is-hidden');
-  getMovies();
+  if (target === refs.home) {
+    goBack();
+    return;
+  }
+  movies(1);
+}
+
+function goBack() {
+  switch (VIEWS.CURRENT) {
+    case VIEWS.HOME:
+      movies();
+      return;
+    case VIEWS.SEARCH:
+      handleSearch();
+      return;
+    default:
+      return;
+  }
 }
 
 function onClickMyWatchedBtn() {
@@ -131,15 +149,15 @@ function changeClassBtn(add, remove) {
   refs.queueBtn.classList.remove(add);
 }
 
-function changeClassA(classA) {
-  refs.myLibA.classList.toggle(classA);
-  refs.homeA.classList.toggle(classA);
+function changeLibClass(className) {
+  refs.myLib.classList.toggle(className);
+  refs.home.classList.toggle(className);
 }
 
 function myLibrary() {
   refs.logo.addEventListener('click', onClickMyHomeBtn);
-  refs.myLibA.addEventListener('click', onClickMyLibBtn);
-  refs.homeA.addEventListener('click', onClickMyHomeBtn);
+  refs.myLib.addEventListener('click', onClickMyLibBtn);
+  refs.home.addEventListener('click', onClickMyHomeBtn);
   refs.watchedBtn.addEventListener('click', onClickMyWatchedBtn);
   refs.queueBtn.addEventListener('click', onClickMyQueueBtn);
 }
