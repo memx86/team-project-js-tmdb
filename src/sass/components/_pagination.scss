@@ -13,7 +13,6 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  transition: opacity 250ms linear, visibility 250ms linear;
   &.is-hidden {
     opacity: 0;
     visibility: hidden;
