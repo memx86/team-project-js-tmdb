@@ -2,6 +2,7 @@ import { renderMarkup } from './templates/film_card';
 import { api, pagination, ApiTMDB, VIEWS } from './services';
 
 const refs = {
+  form: document.querySelector('.search__form'),
   gallery: document.querySelector('.gallery'),
   info: document.querySelector('.gallery-info'),
   categories: document.querySelector('.gallery-categories'),
@@ -38,12 +39,14 @@ function toggleActiveBtn(target) {
 async function movies(page) {
   VIEWS.CURRENT = VIEWS.HOME;
   refs.info.innerHTML = '';
+  refs.form.reset();
   if (page) {
     api.page = page;
     api.endpoint = ApiTMDB.ENDPOINTS.TRENDING;
     toggleActiveBtn(refs.defaultBtn);
   }
   try {
+    pagination.hidePagination();
     const totalPages = await renderMovies();
     pagination.page = api.page;
     pagination.totalPages = totalPages;

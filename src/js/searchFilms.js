@@ -1,5 +1,5 @@
 import { renderMarkup } from './templates/film_card';
-import { api, pagination, moviesStorage, VIEWS } from './services';
+import { api, pagination, VIEWS } from './services';
 import movies from './movies';
 
 const submitForm = document.querySelector('.search__form');
@@ -39,7 +39,6 @@ const handleSuccess = ({ results, total_pages: totalPages }) => {
   info.innerHTML = '';
   gallery.innerHTML = '';
   renderMarkup(results);
-  moviesStorage.save(results);
   pagination.callback = searchFilms;
   pagination.page = api.page;
   pagination.totalPages = totalPages;
